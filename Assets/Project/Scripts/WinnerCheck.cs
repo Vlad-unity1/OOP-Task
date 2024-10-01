@@ -3,18 +3,18 @@ using UnityEngine;
 
 public class WinnerCheck : MonoBehaviour
 {
-    public GameObject winnerPanel;           
-    public TextMeshProUGUI winnerText;       
+    [SerializeField] private GameObject _winnerPanel;
+    [SerializeField] private TextMeshProUGUI _winnerText;
 
     private void Start()
     {
-        winnerPanel.SetActive(false);
+        _winnerPanel.SetActive(false);
     }
 
     public void ShowWinner(string winnerName)
     {
-        winnerPanel.SetActive(true);
-        winnerText.text = $"Winner: {winnerName}";
+        _winnerPanel.SetActive(true);
+        _winnerText.text = $"Winner: {winnerName}";
     }
 
     public void RestartBattle()

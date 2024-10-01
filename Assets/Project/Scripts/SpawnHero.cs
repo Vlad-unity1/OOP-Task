@@ -10,7 +10,8 @@ namespace Spawn
         [SerializeField] private Vector3 _spawnPositionWarrior;
         [SerializeField] private Vector3 _spawnPositionArcher;
         [SerializeField] private CharacterFactory _characterFactory;
-        private List<Character> _activeCharacters = new();
+        [SerializeField] private WinnerCheck _winer;
+        private readonly List<Character> _activeCharacters = new();
 
         private void Start()
         {
@@ -36,9 +37,9 @@ namespace Spawn
         private void CheckCharacters()
         {
             _activeCharacters.RemoveAll(character => character.HP <= 0);
-            if( _activeCharacters.Count == 1 )
+            if (_activeCharacters.Count == 1)
             {
-                Debug.Log($"Победитель: {_activeCharacters[0].Name}");
+                _winer.ShowWinner(_activeCharacters[0].Name);
             }
         }
     }
