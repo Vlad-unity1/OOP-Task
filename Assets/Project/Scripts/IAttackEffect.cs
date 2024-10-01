@@ -1,9 +1,10 @@
 using CharacterAttack;
+using UnityEngine;
 
-namespace ApplyAttackEffect
+namespace CharacterFactoryI
 {
-    public interface IAttackEffect
+    public interface ICharacterFactory
     {
-        void ApplyEffect(Character target);
+        Character CreateCharacter(string type, Vector3 position);
     }
 }

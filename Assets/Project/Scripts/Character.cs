@@ -1,21 +1,13 @@
-﻿using Spawn;
-using System.ComponentModel;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace CharacterAttack
 {
-    public abstract class Character : MonoBehaviour
+    public abstract class Character
     {
-        public string Name { get; set; }
-        public int Damage { get; set; }
-        public int HP { get; set; }
-        public int EffectTime { get; set; }
-        private WinnerCheck Winner { get; set; }
-
-        private void Start()
-        {
-            Winner = FindObjectOfType<WinnerCheck>();
-        }
+        public string Name { get; private set; }
+        public int Damage { get; private set; }
+        public int HP { get; private set; }
+        public int EffectTime { get; private set; }
 
         public Character(string name, int damage, int hp, int effectTime)
         {
@@ -25,14 +17,15 @@ namespace CharacterAttack
             EffectTime = effectTime;
         }
 
-        public void DieCheck(Character character)
+        public void TakeDamage(int damage)
         {
-            if(HP <= 0)
-            {
-                Destroy(gameObject);
-                print($"{Name} has died");
-                Winner.ShowWinner(character.Name);
-            }
+            HP -= damage;
+            Debug.Log($"Name {Name} + Health {HP}");
+        }
+
+        public void SetDamage(int newDamage)
+        {
+            Damage = newDamage;
         }
 
         protected abstract void AttackMethod(Character opponent);

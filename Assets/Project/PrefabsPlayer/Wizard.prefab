@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2083463429560678385}
   - component: {fileID: 8884601832070963227}
   - component: {fileID: 8715294213903390137}
-  - component: {fileID: 7853274236267730419}
+  - component: {fileID: 6492259982333370223}
   m_Layer: 0
   m_Name: Wizard
   m_TagString: Untagged
@@ -108,7 +108,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7853274236267730419
+--- !u!114 &6492259982333370223
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,6 +117,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6067452841041272082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f80878c578b609046b5cb8e29afa332d, type: 3}
+  m_Script: {fileID: 11500000, guid: 14efd0fae6c7a4241a6e918b3d1722c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _name: Wizard
+  _damage: 10
+  _hp: 150
+  _effectTime: 2
