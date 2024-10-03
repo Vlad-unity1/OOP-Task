@@ -123,50 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &41270166
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 41270168}
-  - component: {fileID: 41270167}
-  m_Layer: 0
-  m_Name: EffectManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &41270167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 41270166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 750264ed34e1b474aa2e040352b88cf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &41270168
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 41270166}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &154256587
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,8 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6a60ca303857f41b9942c57e3df46c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winnerPanel: {fileID: 182323775}
-  winnerText: {fileID: 872843964}
+  _winnerPanel: {fileID: 182323775}
+  _winnerText: {fileID: 872843964}
 --- !u!4 &154256589
 Transform:
   m_ObjectHideFlags: 0
@@ -993,7 +949,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1330554987}
   - component: {fileID: 1330554988}
-  - component: {fileID: 1330554989}
   m_Layer: 0
   m_Name: SpawnHero
   m_TagString: Untagged
@@ -1010,7 +965,7 @@ Transform:
   m_GameObject: {fileID: 1330554986}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 7.9, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1028,26 +983,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61943a740234d0478981fca3bae46dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnPositionArcher: {x: 1, y: 4, z: 5}
-  _spawnPositionWizard: {x: 1, y: 5, z: 2}
-  _spawnPositionWarrior: {x: 1, y: 6, z: 4}
-  _characterFactory: {fileID: 1330554989}
---- !u!114 &1330554989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1330554986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f89e193bd51c22c41aff7f363f18bbca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _characterPrefabs:
-  - {fileID: 6067452841041272082, guid: 0f08d72499992f7418394f3ea687bb76, type: 3}
-  - {fileID: 800006567791207248, guid: f2b601a5e545e4c419d589997cf2a0b3, type: 3}
-  - {fileID: 8672553027300971378, guid: 8dcc8f94ca714c548875dbbd715cc980, type: 3}
+  _characterData:
+  - Name: Archer
+    SpawnPosition: {x: 8, y: 0, z: 0}
+    Prefab: {fileID: 8672553027300971378, guid: 8dcc8f94ca714c548875dbbd715cc980, type: 3}
+    IsActive: 1
+  - Name: Warrior
+    SpawnPosition: {x: 0, y: 0, z: 0}
+    Prefab: {fileID: 800006567791207248, guid: f2b601a5e545e4c419d589997cf2a0b3, type: 3}
+    IsActive: 1
+  - Name: Wizard
+    SpawnPosition: {x: 8, y: 0, z: 0}
+    Prefab: {fileID: 6067452841041272082, guid: 0f08d72499992f7418394f3ea687bb76, type: 3}
+    IsActive: 0
+  _winner: {fileID: 154256588}
 --- !u!1 &1353398168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,6 +1167,51 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1773083269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1773083270}
+  - component: {fileID: 1773083271}
+  m_Layer: 0
+  m_Name: EntryPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1773083270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773083269}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.801808, y: 0.34506232, z: 3.5245168}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1773083271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773083269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c4a891012adec468c20be0c6470de1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _charactersSpawner: {fileID: 1330554988}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1229,4 +1223,4 @@ SceneRoots:
   - {fileID: 1722880398}
   - {fileID: 1353398171}
   - {fileID: 154256589}
-  - {fileID: 41270168}
+  - {fileID: 1773083270}

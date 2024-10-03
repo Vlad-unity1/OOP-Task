@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 35793770221917945}
   - component: {fileID: 3510962826308005870}
   - component: {fileID: -190952084426798937}
+  - component: {fileID: 2587375738632768385}
   m_Layer: 0
   m_Name: Warrior
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,5 +119,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14efd0fae6c7a4241a6e918b3d1722c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2587375738632768385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800006567791207248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b2e135fad7b3bc48a5cab817c0b216b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

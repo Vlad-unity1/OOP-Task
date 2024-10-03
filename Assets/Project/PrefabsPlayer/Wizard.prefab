@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 8884601832070963227}
   - component: {fileID: 8715294213903390137}
   - component: {fileID: 6492259982333370223}
+  - component: {fileID: 4687469764759587307}
   m_Layer: 0
   m_Name: Wizard
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +121,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14efd0fae6c7a4241a6e918b3d1722c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Wizard
-  _damage: 10
-  _hp: 150
-  _effectTime: 2
+--- !u!114 &4687469764759587307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6067452841041272082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35aa120e1bffe0e48bee72756261d8f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

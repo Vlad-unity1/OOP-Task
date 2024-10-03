@@ -20,7 +20,6 @@ namespace CharacterAttack
         public void TakeDamage(int damage)
         {
             HP -= damage;
-            Debug.Log($"Name {Name} + Health {HP}");
         }
 
         public void SetDamage(int newDamage)
@@ -28,6 +27,6 @@ namespace CharacterAttack
             Damage = newDamage;
         }
 
-        protected abstract void AttackMethod(Character opponent);
+        public abstract void AttackMethod(Character opponent);
     }
 }

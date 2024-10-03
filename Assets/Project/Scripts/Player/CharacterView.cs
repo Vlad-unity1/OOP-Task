@@ -1,4 +1,4 @@
-using CharacterAttack;
+﻿using CharacterAttack;
 using UnityEngine;
 
 public class CharacterView : MonoBehaviour

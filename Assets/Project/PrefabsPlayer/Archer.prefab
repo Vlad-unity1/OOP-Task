@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 8110421668564789316}
   - component: {fileID: 5580915829819235190}
   - component: {fileID: 8927619252583258401}
+  - component: {fileID: 8511345956716130407}
   m_Layer: 0
   m_Name: Archer
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,5 +119,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14efd0fae6c7a4241a6e918b3d1722c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8511345956716130407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672553027300971378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd9df6fe593577445b275917450a6c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
