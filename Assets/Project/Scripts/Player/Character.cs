@@ -27,6 +27,14 @@ namespace CharacterAttack
             Damage = newDamage;
         }
 
+        public void Die(Character character)
+        {
+            if (character.HP <= 0)
+            {
+                // я не знаю как уничтожить объект без монобеха пока этот метод инактив
+            }
+        }
+
         public abstract void AttackMethod(Character opponent);
     }
 }

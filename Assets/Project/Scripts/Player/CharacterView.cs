@@ -9,12 +9,4 @@ public class CharacterView : MonoBehaviour
     {
         this._character = character;
     }
-
-    public void Die(Character character)
-    {
-        if(character.HP <= 0)
-        {
-            Destroy(this.gameObject);
-        }
-    }
 }

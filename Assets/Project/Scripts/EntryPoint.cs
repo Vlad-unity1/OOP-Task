@@ -1,4 +1,4 @@
-using CharacterAttack;
+﻿using CharacterAttack;
 using Spawn;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +13,7 @@ public class EntryPoint : MonoBehaviour
        _characters = _charactersSpawner.SpawnCharacters();
         foreach (Character character in _characters)
         {
-            //character.Init();
+            //character.Init(); // еще не дописал скрипт
         }
     }
 }

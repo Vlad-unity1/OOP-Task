@@ -25,7 +25,6 @@ namespace Spawn
 
         private void Update()
         {
-            CheckCharacters(); // пока не придумал еще куда это, идея: каждый выстрел
             HandleAttackInput();
         }
 
@@ -77,6 +76,7 @@ namespace Spawn
 
                 attacker1.AttackMethod(attacker2); 
                 attacker2.AttackMethod(attacker1);
+                CheckCharacters(); // теперь пока что тут)
             }
         }
     }
