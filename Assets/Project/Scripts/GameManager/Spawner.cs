@@ -1,5 +1,6 @@
 ﻿using ArcherAttack;
 using CharacterAttack;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Warrior;
@@ -16,12 +17,17 @@ namespace Spawn
         public bool IsActive;
     }
 
-    public class SpawnHero : MonoBehaviour
+    public class Spawner : MonoBehaviour
     {
         [SerializeField] private CharacterData[] _characterData;
-        [SerializeField] private WinnerCheck _winner;
+        [SerializeField] private WinnerCheckUI _winner;
 
         private readonly List<Character> _activeCharacters = new();
+
+        private void Start()
+        {
+            SpawnCharacters(); 
+        }
 
         private void Update()
         {
@@ -60,9 +66,9 @@ namespace Spawn
         {
             return type switch
             {
-                "Wizard" => new WizardAttack("Wizard", 15, 120, 3),
-                "Warrior" => new WarriorAttack("Warrior", 20, 150, 5),
-                "Archer" => new Archer("Archer", 10, 100, 7),
+                "Wizard" => new WizardAttack("Wizard", 15, 120, 3, gameObject.AddComponent<DebuffEffect>()),
+                "Warrior" => new WarriorAttack("Warrior", 20, 150, 5, gameObject.AddComponent<StuntEffect>()),
+                "Archer" => new Archer("Archer", 10, 100, 7, gameObject.AddComponent<PoisonedArrowsEffect>()),
                 _ => null
             };
         }

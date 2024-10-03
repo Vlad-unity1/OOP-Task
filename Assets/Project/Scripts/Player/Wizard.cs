@@ -7,8 +7,11 @@ namespace Wizard
     {
         private readonly DebuffEffect _debuffEffect;
 
-        public WizardAttack(string name, int damage, int hp, int effectTime)
-        : base(name, damage, hp, effectTime) { }
+        public WizardAttack(string name, int damage, int hp, int effectTime, DebuffEffect debuffEffect)
+        : base(name, damage, hp, effectTime) 
+        { 
+            _debuffEffect = debuffEffect;
+        }
 
         public override void AttackMethod(Character opponent)
         {

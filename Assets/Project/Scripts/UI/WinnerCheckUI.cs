@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class WinnerCheck : MonoBehaviour
+public class WinnerCheckUI : MonoBehaviour
 {
     [SerializeField] private GameObject _winnerPanel;
     [SerializeField] private TextMeshProUGUI _winnerText;

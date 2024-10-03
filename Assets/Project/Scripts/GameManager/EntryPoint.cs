@@ -6,7 +6,7 @@ using UnityEngine;
 public class EntryPoint : MonoBehaviour
 {
     private List<Character> _characters = new();
-    [SerializeField] private SpawnHero _charactersSpawner;
+    [SerializeField] private Spawner _charactersSpawner;
 
     private void Start()
     {

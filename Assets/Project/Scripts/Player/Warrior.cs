@@ -7,8 +7,11 @@ namespace Warrior
     {
         private readonly StuntEffect _effectStunt;
 
-        public WarriorAttack(string name, int damage, int hp, int effectTime)
-        : base(name, damage, hp, effectTime) { }
+        public WarriorAttack(string name, int damage, int hp, int effectTime, StuntEffect stuntEffect)
+        : base(name, damage, hp, effectTime) 
+        { 
+            _effectStunt = stuntEffect;
+        }
 
         public override void AttackMethod(Character opponent)
         {

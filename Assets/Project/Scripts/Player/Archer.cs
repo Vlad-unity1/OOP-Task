@@ -7,9 +7,12 @@ namespace ArcherAttack
     {
        private readonly PoisonedArrowsEffect _effectArrow;
         
-        public Archer(string name, int damage, int hp, int effectTime)
-        : base(name, damage, hp, effectTime) { }
-
+        public Archer(string name, int damage, int hp, int effectTime, PoisonedArrowsEffect effectArrow)
+        : base(name, damage, hp, effectTime) 
+        { 
+            _effectArrow = effectArrow;
+        }
+   
         public override void AttackMethod(Character opponent)
         {
             opponent.TakeDamage(Damage);

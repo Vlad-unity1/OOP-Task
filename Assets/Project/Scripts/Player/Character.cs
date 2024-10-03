@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace CharacterAttack
+﻿namespace CharacterAttack
 {
     public abstract class Character
     {
@@ -26,13 +24,10 @@ namespace CharacterAttack
         {
             Damage = newDamage;
         }
-
-        public void Die(Character character)
+        
+        public void Die()
         {
-            if (character.HP <= 0)
-            {
-                // я не знаю как уничтожить объект без монобеха пока этот метод инактив
-            }
+            
         }
 
         public abstract void AttackMethod(Character opponent);
