@@ -1,7 +1,8 @@
-using CharacterAttack;
+using CharacterInfo;
+using PoisonedEffectSystem;
 using UnityEngine;
 
-namespace ArcherAttack
+namespace CharactersArcher
 {
     public class Archer : Character
     {

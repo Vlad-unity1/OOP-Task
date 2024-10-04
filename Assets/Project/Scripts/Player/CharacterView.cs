@@ -1,8 +1,22 @@
-﻿using CharacterAttack;
-using System;
+﻿using CharacterInfo;
 using UnityEngine;
 
-public class CharacterView : MonoBehaviour
+namespace CharacterViewDie
 {
-    
+    public class CharacterView : MonoBehaviour
+    {
+        public Character Character { get; private set; }
+
+        public void Initialize(Character character)
+        {
+            Character = character;
+            Character.OnDeath += OnCharacterDeath;
+        }
+
+        private void OnCharacterDeath(Character character)
+        {
+            Object.Destroy(this.gameObject);
+        }
+    }
+
 }

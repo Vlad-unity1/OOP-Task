@@ -1,13 +1,14 @@
-﻿using CharacterAttack;
+﻿using CharacterInfo;
+using DebuffEffectSystem;
 using UnityEngine;
 
-namespace Wizard
+namespace CharacterWizard
 {
-    public class WizardAttack : Character
+    public class Wizard : Character
     {
         private readonly DebuffEffect _debuffEffect;
 
-        public WizardAttack(string name, int damage, int hp, int effectTime, DebuffEffect debuffEffect)
+        public Wizard(string name, int damage, int hp, int effectTime, DebuffEffect debuffEffect)
         : base(name, damage, hp, effectTime) 
         { 
             _debuffEffect = debuffEffect;

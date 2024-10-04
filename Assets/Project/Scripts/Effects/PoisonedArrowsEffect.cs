@@ -1,18 +1,21 @@
-using CharacterAttack;
+using CharacterInfo;
 using System.Collections;
 using UnityEngine;
 
-public class PoisonedArrowsEffect : MonoBehaviour
+namespace PoisonedEffectSystem
 {
-    public void StartEffectArcherCoroutine(Character target, int damage, float effectTime)
+    public class PoisonedArrowsEffect : MonoBehaviour
     {
-        StartCoroutine(RemoveEffectArcherAfterTime(target, damage, effectTime));
-    }
+        public void StartEffectArcherCoroutine(Character target, int damage, float effectTime)
+        {
+            StartCoroutine(RemoveEffectArcherAfterTime(target, damage, effectTime));
+        }
 
-    private IEnumerator RemoveEffectArcherAfterTime(Character target, int damage, float effectTime)
-    {
-        target.TakeDamage(damage);
-        yield return new WaitForSeconds(effectTime);
-        Debug.Log("Effect removed after time." + target.Name);
+        private IEnumerator RemoveEffectArcherAfterTime(Character target, int damage, float effectTime)
+        {
+            target.TakeDamage(damage);
+            yield return new WaitForSeconds(effectTime);
+            Debug.Log("Effect removed after time." + target.Name);
+        }
     }
 }

@@ -1,10 +1,12 @@
-﻿using ArcherAttack;
-using CharacterAttack;
-using System;
+﻿using CharactersArcher;
+using CharacterInfo;
 using System.Collections.Generic;
 using UnityEngine;
-using Warrior;
-using Wizard;
+using WinnerWindowUI;
+using CharacterViewDie;
+using DebuffEffectSystem;
+using PoisonedEffectSystem;
+using StuntEffectSystem;
 
 namespace Spawn
 {
@@ -47,9 +49,13 @@ namespace Spawn
         {
             if (data.IsActive)
             {
-                Instantiate(data.Prefab, data.SpawnPosition, Quaternion.identity);
-                Character character = CreateCharacterInstance(data.Name);
-                _activeCharacters.Add(character);
+                GameObject characterObject = Instantiate(data.Prefab, data.SpawnPosition, Quaternion.identity);               
+                if (characterObject.TryGetComponent<CharacterView>(out var characterView))
+                {
+                    Character character = CreateCharacterInstance(data.Name);
+                    characterView.Initialize(character);
+                    _activeCharacters.Add(character);
+                }
             }
         }
 
@@ -66,8 +72,8 @@ namespace Spawn
         {
             return type switch
             {
-                "Wizard" => new WizardAttack("Wizard", 15, 120, 3, gameObject.AddComponent<DebuffEffect>()),
-                "Warrior" => new WarriorAttack("Warrior", 20, 150, 5, gameObject.AddComponent<StuntEffect>()),
+                "Wizard" => new CharacterWizard.Wizard("Wizard", 15, 120, 3, gameObject.AddComponent<DebuffEffect>()),
+                "Warrior" => new CharacterWarrior.Warrior("Warrior", 30, 150, 5, gameObject.AddComponent<StuntEffect>()),
                 "Archer" => new Archer("Archer", 10, 100, 7, gameObject.AddComponent<PoisonedArrowsEffect>()),
                 _ => null
             };
@@ -82,7 +88,7 @@ namespace Spawn
 
                 attacker1.AttackMethod(attacker2); 
                 attacker2.AttackMethod(attacker1);
-                CheckCharacters(); // теперь пока что тут)
+                CheckCharacters();
             }
         }
     }

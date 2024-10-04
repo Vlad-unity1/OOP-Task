@@ -1,13 +1,14 @@
-﻿using CharacterAttack;
+﻿using CharacterInfo;
+using StuntEffectSystem;
 using UnityEngine;
 
-namespace Warrior
+namespace CharacterWarrior
 {
-    public class WarriorAttack : Character
+    public class Warrior : Character
     {
         private readonly StuntEffect _effectStunt;
 
-        public WarriorAttack(string name, int damage, int hp, int effectTime, StuntEffect stuntEffect)
+        public Warrior(string name, int damage, int hp, int effectTime, StuntEffect stuntEffect)
         : base(name, damage, hp, effectTime) 
         { 
             _effectStunt = stuntEffect;
