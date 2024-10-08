@@ -8,18 +8,16 @@ namespace CharacterWarrior
     {
         private readonly StuntEffect _effectStunt;
 
-        public Warrior(string name, int damage, int hp, int effectTime, StuntEffect stuntEffect)
-        : base(name, damage, hp, effectTime) 
+        public Warrior(int damage, int hp, int effectTime, StuntEffect stuntEffect)
+        : base(damage, hp, effectTime, CharacterType.Warrior) 
         { 
             _effectStunt = stuntEffect;
         }
 
-        public override void AttackMethod(Character opponent)
+        public override void ToAttack(Character opponent)
         {
             opponent.TakeDamage(Damage);
-            Debug.Log($"Name {opponent.Name} + Health {opponent.HP}");
-            Debug.Log($"AttackWarior + {Damage}");
-            _effectStunt.StartEffectWarriorCoroutine(opponent, EffectTime);
+            _effectStunt.EffectStunt(opponent, EffectTime);
         }
     }
 }

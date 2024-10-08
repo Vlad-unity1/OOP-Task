@@ -1,4 +1,5 @@
-using CharacterInfo;
+﻿using CharacterInfo;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,20 +7,30 @@ namespace DebuffEffectSystem
 {
     public class DebuffEffect : MonoBehaviour
     {
-        public void StartEffectWizardCoroutine(Character target, float effectTime)
+        public event Action OnActionEffect;
+        public event Action OnEffectEnd;
+        private bool isDebuffed = false;
+        int originalDamage;
+
+        public void EffectDebuff(Character target, float effectTime)
         {
-            Debug.Log("EffectWizard");
-            StartCoroutine(EffectWizard(target, effectTime));
+            OnActionEffect.Invoke();
+            StartCoroutine(Effect(target, effectTime));
         }
 
-        private IEnumerator EffectWizard(Character target, float effectTime)
+        private IEnumerator Effect(Character target, float effectTime)
         {
-            int originalDamage = target.Damage;
+            if (!isDebuffed) 
+            {
+                originalDamage = target.Damage;
+                isDebuffed = true; 
+            }
 
             target.SetDamage(originalDamage / 2);
             yield return new WaitForSeconds(effectTime);
             target.SetDamage(originalDamage);
-            Debug.Log("WizardEffectRemove");
+            OnEffectEnd?.Invoke();
+            isDebuffed = false;
         }
     }
 }

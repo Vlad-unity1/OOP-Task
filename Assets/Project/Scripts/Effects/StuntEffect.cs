@@ -6,16 +6,16 @@ namespace StuntEffectSystem
 {
     public class StuntEffect : MonoBehaviour
     {
-        public void StartEffectWarriorCoroutine(Character target, float effectTime)
+        public void EffectStunt(Character target, float effectTime)
         {
             Chance(target, effectTime);
         }
 
-        private IEnumerator EffectWarrior(Character target, float effectTime)
+        private IEnumerator Effect(Character target, float effectTime)
         {
-            Debug.Log("StuntEffect" + target.Name);
+            Debug.Log("StuntEffect" + target);
             yield return new WaitForSeconds(effectTime);
-            Debug.Log("StuntEffectRemove" + target.Name);
+            Debug.Log("StuntEffectRemove" + target);
         }
 
         private void Chance(Character target, float effectTime)
@@ -23,7 +23,7 @@ namespace StuntEffectSystem
             int randomInt = Random.Range(0, 10);
             if (randomInt >= 8)
             {
-                StartCoroutine(EffectWarrior(target, effectTime));
+                StartCoroutine(Effect(target, effectTime));
             }
         }
     }

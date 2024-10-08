@@ -13,10 +13,10 @@ namespace WinnerWindowUI
             _winnerPanel.SetActive(false);
         }
 
-        public void ShowWinner(string winnerName)
+        public void ShowWinner(CharacterType type)
         {
             _winnerPanel.SetActive(true);
-            _winnerText.text = $"Winner: {winnerName}";
+            _winnerText.text = $"Winner: {type}";
         }
 
         public void RestartBattle()

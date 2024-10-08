@@ -1,5 +1,7 @@
 ﻿using CharacterInfo;
+using Spawn;
 using UnityEngine;
+using WinnerWindowUI;
 
 namespace CharacterViewDie
 {
@@ -18,5 +20,4 @@ namespace CharacterViewDie
             Object.Destroy(this.gameObject);
         }
     }
-
 }

@@ -6,16 +6,21 @@ namespace PoisonedEffectSystem
 {
     public class PoisonedArrowsEffect : MonoBehaviour
     {
-        public void StartEffectArcherCoroutine(Character target, int damage, float effectTime)
+        public void PoisonedEffect(Character target, int damage, float effectTime, float duration)
         {
-            StartCoroutine(RemoveEffectArcherAfterTime(target, damage, effectTime));
+            StartCoroutine(Effect(target, damage, effectTime, duration));
         }
 
-        private IEnumerator RemoveEffectArcherAfterTime(Character target, int damage, float effectTime)
+        private IEnumerator Effect(Character target, int damage, float effectTime, float duration)
         {
-            target.TakeDamage(damage);
-            yield return new WaitForSeconds(effectTime);
-            Debug.Log("Effect removed after time." + target.Name);
+            float interval = 0f;
+            while (interval < duration)
+            {
+                target.TakeDamage(damage / 2);
+                yield return new WaitForSeconds(effectTime);
+                interval += effectTime;
+                Debug.Log("Damage Poisoned");
+            }
         }
     }
 }

@@ -8,18 +8,16 @@ namespace CharactersArcher
     {
        private readonly PoisonedArrowsEffect _effectArrow;
         
-        public Archer(string name, int damage, int hp, int effectTime, PoisonedArrowsEffect effectArrow)
-        : base(name, damage, hp, effectTime) 
+        public Archer(int damage, int hp, int effectTime, PoisonedArrowsEffect effectArrow)
+        : base(damage, hp, effectTime, CharacterType.Archer) 
         { 
             _effectArrow = effectArrow;
         }
    
-        public override void AttackMethod(Character opponent)
+        public override void ToAttack(Character opponent)
         {
             opponent.TakeDamage(Damage);
-            Debug.Log($"Name {opponent.Name} + Health {opponent.HP}");
-            Debug.Log($"AttackArcher + {Damage}");
-            _effectArrow.StartEffectArcherCoroutine(opponent, Damage * 2, EffectTime); 
+            _effectArrow.PoisonedEffect(opponent, Damage * 2, EffectTime, 2); 
         }
     }
 }

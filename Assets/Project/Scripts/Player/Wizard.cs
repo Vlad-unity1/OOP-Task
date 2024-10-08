@@ -8,18 +8,16 @@ namespace CharacterWizard
     {
         private readonly DebuffEffect _debuffEffect;
 
-        public Wizard(string name, int damage, int hp, int effectTime, DebuffEffect debuffEffect)
-        : base(name, damage, hp, effectTime) 
+        public Wizard(int damage, int hp, int effectTime, DebuffEffect debuffEffect)
+        : base(damage, hp, effectTime, CharacterType.Wizard) 
         { 
             _debuffEffect = debuffEffect;
         }
 
-        public override void AttackMethod(Character opponent)
+        public override void ToAttack(Character opponent)
         {
             opponent.TakeDamage(Damage);
-            Debug.Log($"Name {opponent.Name} + Health {opponent.HP}");
-            Debug.Log($"AttackWizard + {Damage}");
-            _debuffEffect.StartEffectWizardCoroutine(opponent, EffectTime);
+            _debuffEffect.EffectDebuff(opponent, EffectTime);
         }
     }
 }
