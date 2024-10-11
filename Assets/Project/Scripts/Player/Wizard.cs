@@ -18,7 +18,7 @@ namespace CharacterWizard
         {
             if(opponent.IsAlive)
             {
-                opponent.TakeDamage(Damage);
+                opponent.TakeDamage(Damage, _debuffEffect.GetEffectType());
                 _debuffEffect.EffectDebuff(opponent, EffectTime);
             }
         }

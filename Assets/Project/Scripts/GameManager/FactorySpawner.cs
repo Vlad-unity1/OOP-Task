@@ -1,4 +1,4 @@
-using CharacterInfo;
+﻿using CharacterInfo;
 using CharactersArcher;
 using DebuffEffectSystem;
 using PoisonedEffectSystem;
@@ -12,15 +12,15 @@ public class FactorySpawner : MonoBehaviour
         switch (data.Type)
         {
             case CharacterType.Wizard:
-                var wizard = characterObject.AddComponent<DebuffEffect>();
+                var wizard = characterObject.GetComponent<DebuffEffect>() ?? characterObject.AddComponent<DebuffEffect>();
                 return new CharacterWizard.Wizard(data.Damage, data.Health, data.EffectTime, wizard);
 
             case CharacterType.Warrior:
-                var warrior = characterObject.AddComponent<StuntEffect>();
+                var warrior = characterObject.GetComponent<StuntEffect>() ?? characterObject.AddComponent<StuntEffect>();
                 return new CharacterWarrior.Warrior(data.Damage, data.Health, data.EffectTime, warrior);
 
             case CharacterType.Archer:
-                var archer = characterObject.AddComponent<PoisonedArrowsEffect>();
+                var archer = characterObject.GetComponent<PoisonedArrowsEffect>() ?? characterObject.AddComponent<PoisonedArrowsEffect>();
                 return new Archer(data.Damage, data.Health, data.EffectTime, archer);
 
             default:

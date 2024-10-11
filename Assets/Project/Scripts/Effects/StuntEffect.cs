@@ -6,6 +6,7 @@ namespace StuntEffectSystem
 {
     public class StuntEffect : MonoBehaviour
     {
+        public EffectsType Stunt;
         public void EffectStunt(Character target, float effectTime)
         {
             Chance(target, effectTime);
@@ -25,6 +26,11 @@ namespace StuntEffectSystem
             {
                 StartCoroutine(Effect(target, effectTime));
             }
+        }
+
+        internal EffectsType GetEffectType()
+        {
+            return Stunt;
         }
     }
 }

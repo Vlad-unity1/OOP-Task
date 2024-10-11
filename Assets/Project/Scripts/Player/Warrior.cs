@@ -18,7 +18,7 @@ namespace CharacterWarrior
         {
             if(opponent.IsAlive)
             {
-                opponent.TakeDamage(Damage);
+                opponent.TakeDamage(Damage, _effectStunt.GetEffectType());
                 _effectStunt.EffectStunt(opponent, EffectTime);
             }
         }

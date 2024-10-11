@@ -18,7 +18,7 @@ namespace CharactersArcher
         {
             if(opponent.IsAlive)
             {
-                opponent.TakeDamage(Damage);
+                opponent.TakeDamage(Damage, _effectArrow.GetEffectType());
                 _effectArrow.PoisonedEffect(opponent, Damage * 2, EffectTime, 2);
             }
         }

@@ -13,6 +13,7 @@ namespace CharacterInfo
         public CharacterType Type { get; internal set; }
         public bool IsAlive { get; internal set; }
 
+        public event Action<EffectsType> OnEffectApply;
         public event Action<int> OnHealthChanged;
         public event Action<Character> OnDeath;
 
@@ -26,10 +27,11 @@ namespace CharacterInfo
             CurrentHP = hp;
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(int damage, EffectsType effect)
         {
             CurrentHP = Mathf.Max(CurrentHP - damage, 0);
             OnHealthChanged?.Invoke(CurrentHP);
+            OnEffectApply?.Invoke(effect);
             if (CurrentHP == 0)
             {
                 Die();
