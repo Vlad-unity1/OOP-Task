@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CharacterViewDie;
+using System;
 using UnityEngine;
 
 namespace CharacterInfo
@@ -6,11 +7,13 @@ namespace CharacterInfo
     public abstract class Character
     {
         public int Damage { get; private set; }
-        public int HP { get; private set; }
+        public int HP { get; protected set; }
+        public int CurrentHP { get; private set; }
         public int EffectTime { get; private set; }
         public CharacterType Type { get; internal set; }
         public bool IsAlive { get; internal set; }
 
+        public event Action<int> OnHealthChanged;
         public event Action<Character> OnDeath;
 
         public Character(int damage, int hp, int effectTime, CharacterType type)
@@ -20,12 +23,14 @@ namespace CharacterInfo
             EffectTime = effectTime;
             Type = type;
             IsAlive = true;
+            CurrentHP = hp;
         }
 
         public void TakeDamage(int damage)
         {
-            HP = Mathf.Max(HP - damage, 0);
-            if (HP == 0)
+            CurrentHP = Mathf.Max(CurrentHP - damage, 0);
+            OnHealthChanged?.Invoke(CurrentHP);
+            if (CurrentHP == 0)
             {
                 Die();
             }
