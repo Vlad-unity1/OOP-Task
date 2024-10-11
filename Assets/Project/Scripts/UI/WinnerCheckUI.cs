@@ -1,19 +1,22 @@
-﻿using TMPro;
+﻿using Spawn;
+using TMPro;
 using UnityEngine;
 
 namespace WinnerWindowUI
 {
-    public class WinnerCheckUI : MonoBehaviour
+    public class WinnerCheckUI : UIView
     {
         [SerializeField] private GameObject _winnerPanel;
         [SerializeField] private TextMeshProUGUI _winnerText;
+        public static WinnerCheckUI Instance { get; private set; }
 
         private void Start()
         {
+            Instance = this;
             _winnerPanel.SetActive(false);
         }
 
-        public void ShowWinner(CharacterType type)
+        public override void ShowWinner(CharacterType type)
         {
             _winnerPanel.SetActive(true);
             _winnerText.text = $"Winner: {type}";

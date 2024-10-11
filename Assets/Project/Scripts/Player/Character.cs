@@ -8,7 +8,9 @@ namespace CharacterInfo
         public int Damage { get; private set; }
         public int HP { get; private set; }
         public int EffectTime { get; private set; }
-        public CharacterType Type { get; private set; }
+        public CharacterType Type { get; internal set; }
+        public bool IsAlive { get; internal set; }
+
         public event Action<Character> OnDeath;
 
         public Character(int damage, int hp, int effectTime, CharacterType type)
@@ -17,6 +19,7 @@ namespace CharacterInfo
             HP = hp;
             EffectTime = effectTime;
             Type = type;
+            IsAlive = true;
         }
 
         public void TakeDamage(int damage)
@@ -35,6 +38,7 @@ namespace CharacterInfo
         
         public void Die()
         {
+            IsAlive = false;
             OnDeath?.Invoke(this);
         }
 

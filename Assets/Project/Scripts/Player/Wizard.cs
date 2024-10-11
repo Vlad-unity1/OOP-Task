@@ -16,8 +16,11 @@ namespace CharacterWizard
 
         public override void ToAttack(Character opponent)
         {
-            opponent.TakeDamage(Damage);
-            _debuffEffect.EffectDebuff(opponent, EffectTime);
+            if(opponent.IsAlive)
+            {
+                opponent.TakeDamage(Damage);
+                _debuffEffect.EffectDebuff(opponent, EffectTime);
+            }
         }
     }
 }

@@ -17,6 +17,8 @@ namespace CharacterViewDie
 
         private void OnCharacterDeath(Character character)
         {
+            Character.OnDeath -= OnCharacterDeath;
+            GameView.Instance.OnPlayerDeath(character);
             Object.Destroy(this.gameObject);
         }
     }

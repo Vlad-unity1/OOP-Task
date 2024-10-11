@@ -13,7 +13,7 @@ public class InputController : MonoBehaviour
 
     private void HandleAttackInput()
     {
-        if (Input.GetMouseButtonDown(0) && _characterNumber._activeCharacters.Count == 2)
+        if (Input.GetMouseButtonDown(0))
         {
             Character attacker1 = _characterNumber._activeCharacters[0];
             Character attacker2 = _characterNumber._activeCharacters[1];

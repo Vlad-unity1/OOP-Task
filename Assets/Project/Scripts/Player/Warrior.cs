@@ -16,8 +16,11 @@ namespace CharacterWarrior
 
         public override void ToAttack(Character opponent)
         {
-            opponent.TakeDamage(Damage);
-            _effectStunt.EffectStunt(opponent, EffectTime);
+            if(opponent.IsAlive)
+            {
+                opponent.TakeDamage(Damage);
+                _effectStunt.EffectStunt(opponent, EffectTime);
+            }
         }
     }
 }

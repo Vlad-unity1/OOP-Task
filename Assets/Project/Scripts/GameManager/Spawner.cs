@@ -1,5 +1,6 @@
 ﻿using CharacterInfo;
 using CharacterViewDie;
+using DebuffEffectSystem;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,9 +15,11 @@ namespace Spawn
         private readonly HashSet<int> _usedIndexes = new();
         private readonly HashSet<Vector3> _usedPositions = new();
         [SerializeField] private Vector3[] spawnPositions = { new(8, 0, 0), new(0, 0, 0) };
+        public static Spawner Instance { get; private set; }
 
         private void Start()
         {
+            Instance = this;
             _factorySpawner = gameObject.AddComponent<FactorySpawner>();
             SpawnCharacters();
         }

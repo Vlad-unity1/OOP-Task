@@ -16,8 +16,11 @@ namespace CharactersArcher
    
         public override void ToAttack(Character opponent)
         {
-            opponent.TakeDamage(Damage);
-            _effectArrow.PoisonedEffect(opponent, Damage * 2, EffectTime, 2); 
+            if(opponent.IsAlive)
+            {
+                opponent.TakeDamage(Damage);
+                _effectArrow.PoisonedEffect(opponent, Damage * 2, EffectTime, 2);
+            }
         }
     }
 }
