@@ -9,10 +9,10 @@ namespace Spawn
     {
         [SerializeField] private CharacterDataObject[] _characterData;
         private FactorySpawner _factorySpawner;
-        public readonly List<Character> _activeCharacters = new();
+        public List<Character> ActiveCharacters { get; private set; } = new();
         private readonly HashSet<int> _usedIndexes = new();
         private readonly HashSet<Vector3> _usedPositions = new();
-        [SerializeField] private Vector3[] spawnPositions = { new(8, 0, 0), new(0, 0, 0) };
+        [SerializeField] private Vector3[] spawnPositions = { new(2, 0, -8), new(5, 0, -8) };
         public static Spawner Instance { get; private set; }
 
         private void Start()
@@ -49,7 +49,7 @@ namespace Spawn
                 SpawnCharacter(_characterData[randomIndex], spawnPosition);
             }
 
-            return _activeCharacters;
+            return ActiveCharacters;
         }
 
         private void SpawnCharacter(CharacterDataObject data, Vector3 position)
@@ -59,7 +59,7 @@ namespace Spawn
             {
                 Character character = _factorySpawner.CreateCharacterInstance(data, characterObject);
                 characterView.Initialize(character);
-                _activeCharacters.Add(character);
+                ActiveCharacters.Add(character);
             }
         }
     }
@@ -68,5 +68,6 @@ public enum CharacterType
 {
     Wizard,
     Warrior,
-    Archer
+    Archer,
+    Broodmother
 }

@@ -1,4 +1,4 @@
-using CharacterInfo;
+﻿using CharacterInfo;
 using System.Collections;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ namespace PoisonedEffectSystem
 
         public void PoisonedEffect(Character target, int damage, float effectTime, float duration)
         {
-            StartCoroutine(Effect(target, damage, effectTime, duration));
+            StartCoroutine(Effect(target, damage, effectTime, duration)); // во всех способностях игрок может умереть раньше времени и выпадет null хз как решить
         }
 
         internal EffectsType GetEffectType()

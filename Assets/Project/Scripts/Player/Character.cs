@@ -7,7 +7,7 @@ namespace CharacterInfo
     {
         public int Damage { get; private set; }
         public int HP { get; protected set; }
-        public int CurrentHP { get; private set; }
+        public int CurrentHP { get; set; }
         public int EffectTime { get; private set; }
         public CharacterType Type { get; internal set; }
         public bool IsAlive { get; internal set; }
@@ -44,13 +44,23 @@ namespace CharacterInfo
         {
             Damage = newDamage;
         }
-        
-        public void Die()
+
+        public void RestoreHealth(int currentHealh)
+        {
+            CurrentHP += currentHealh;
+        }
+
+        private void Die()
         {
             IsAlive = false;
             OnDeath?.Invoke(this);
         }
 
         public abstract void ToAttack(Character opponent);
+
+        internal void TakeDamage(int damage, object value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

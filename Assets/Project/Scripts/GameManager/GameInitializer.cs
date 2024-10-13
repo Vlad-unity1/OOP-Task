@@ -1,18 +1,26 @@
+using Spawn;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameInitializer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private GameView _gameView;
+    private InputController _inputController;
+    private Spawner _spawner;
+
+    private void Awake()
     {
-        
+        _gameView = FindObjectOfType<GameView>();
+        _inputController = FindObjectOfType<InputController>();
+        _spawner = FindObjectOfType<Spawner>();
+
+        InitializeGame();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void InitializeGame()
     {
-        
+        _spawner.SpawnCharacters();
+        _inputController.enabled = true;
     }
 }

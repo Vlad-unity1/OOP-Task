@@ -23,6 +23,10 @@ public class FactorySpawner : MonoBehaviour
                 var archer = characterObject.GetComponent<PoisonedArrowsEffect>() ?? characterObject.AddComponent<PoisonedArrowsEffect>();
                 return new Archer(data.Damage, data.Health, data.EffectTime, archer);
 
+            case CharacterType.Broodmother:
+                var broodmother = characterObject.GetComponent<VampirEffect>() ?? characterObject.AddComponent<VampirEffect>();
+                return new Broodmother(data.Damage, data.Health, data.EffectTime, broodmother);
+
             default:
                 return null;
         }

@@ -26,7 +26,7 @@ public class GameView : MonoBehaviour
         int aliveCount = 0;
         Character lastAliveCharacter = null;
 
-        foreach (var character in Spawner.Instance._activeCharacters)
+        foreach (var character in Spawner.Instance.ActiveCharacters)
         {
             if (character.IsAlive)
             {

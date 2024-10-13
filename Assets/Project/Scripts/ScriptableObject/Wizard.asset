@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   Prefab: {fileID: 6067452841041272082, guid: 0f08d72499992f7418394f3ea687bb76, type: 3}
-  SpawnPosition: {x: 8, y: 0, z: 0}
+  SpawnPosition: {x: 0, y: 0, z: 0}
   Health: 100
   Damage: 20
   EffectTime: 1

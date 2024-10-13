@@ -42,5 +42,6 @@ public enum EffectsType
 {
     Debuff,
     Poison,
-    Stunt
+    Stunt,
+    Vampir
 }
