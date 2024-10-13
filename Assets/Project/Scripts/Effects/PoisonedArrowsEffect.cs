@@ -1,5 +1,4 @@
 using CharacterInfo;
-using System;
 using System.Collections;
 using UnityEngine;
 

@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Spawn
 {
-
     public class Spawner : MonoBehaviour
     {
         [SerializeField] private CharacterDataObject[] _characterData;

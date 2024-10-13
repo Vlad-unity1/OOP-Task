@@ -1,6 +1,5 @@
 using CharacterInfo;
 using PoisonedEffectSystem;
-using UnityEngine;
 
 namespace CharactersArcher
 {

@@ -1,5 +1,4 @@
-﻿using CharacterViewDie;
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace CharacterInfo
@@ -12,6 +11,7 @@ namespace CharacterInfo
         public int EffectTime { get; private set; }
         public CharacterType Type { get; internal set; }
         public bool IsAlive { get; internal set; }
+        public bool CanAttack {  get; internal set; }
 
         public event Action<EffectsType> OnEffectApply;
         public event Action<int> OnHealthChanged;
@@ -25,6 +25,7 @@ namespace CharacterInfo
             Type = type;
             IsAlive = true;
             CurrentHP = hp;
+            CanAttack = true;
         }
 
         public void TakeDamage(int damage, EffectsType effect)
@@ -35,6 +36,7 @@ namespace CharacterInfo
             if (CurrentHP == 0)
             {
                 Die();
+                CanAttack = false;
             }
         }
 

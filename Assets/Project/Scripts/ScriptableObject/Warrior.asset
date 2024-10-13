@@ -17,4 +17,4 @@ MonoBehaviour:
   SpawnPosition: {x: 0, y: 0, z: 0}
   Health: 150
   Damage: 20
-  EffectTime: 1
+  EffectTime: 10

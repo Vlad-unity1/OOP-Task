@@ -1,4 +1,4 @@
-using CharacterInfo;
+﻿using CharacterInfo;
 using Spawn;
 using UnityEngine;
 
@@ -18,8 +18,15 @@ public class InputController : MonoBehaviour
             Character attacker1 = _characterNumber._activeCharacters[0];
             Character attacker2 = _characterNumber._activeCharacters[1];
 
-            attacker1.ToAttack(attacker2);
-            attacker2.ToAttack(attacker1);
+            if (attacker1 != null && attacker1.CanAttack)
+            {
+                attacker1.ToAttack(attacker2);
+            }
+
+            if (attacker2 != null && attacker2.CanAttack)
+            {
+                attacker2.ToAttack(attacker1);
+            }
         }
     }
 }

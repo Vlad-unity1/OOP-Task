@@ -1,6 +1,5 @@
 ﻿using CharacterInfo;
 using DebuffEffectSystem;
-using UnityEngine;
 
 namespace CharacterWizard
 {

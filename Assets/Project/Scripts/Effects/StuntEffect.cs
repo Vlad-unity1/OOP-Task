@@ -14,9 +14,9 @@ namespace StuntEffectSystem
 
         private IEnumerator Effect(Character target, float effectTime)
         {
-            Debug.Log("StuntEffect" + target);
+            target.CanAttack = false;
             yield return new WaitForSeconds(effectTime);
-            Debug.Log("StuntEffectRemove" + target);
+            target.CanAttack = true;
         }
 
         private void Chance(Character target, float effectTime)

@@ -1,6 +1,5 @@
 ﻿using CharacterInfo;
 using StuntEffectSystem;
-using UnityEngine;
 
 namespace CharacterWarrior
 {
