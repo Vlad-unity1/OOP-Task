@@ -15,10 +15,7 @@ public class GameView : MonoBehaviour
     public void OnPlayerDeath(Character type)
     {
         Character winner = GetWinner();
-        if (winner != null) // тут ошибка может быть раз через раз виннер нулл перед рестартом
-        {
             WinnerCheckUI.Instance.ShowWinner(winner.Type);
-        }
     }
 
     private Character GetWinner()
