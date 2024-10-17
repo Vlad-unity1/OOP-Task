@@ -57,10 +57,5 @@ namespace CharacterInfo
         }
 
         public abstract void ToAttack(Character opponent);
-
-        internal void TakeDamage(int damage, object value)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

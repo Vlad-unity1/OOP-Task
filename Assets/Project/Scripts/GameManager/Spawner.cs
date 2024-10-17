@@ -35,7 +35,7 @@ namespace Spawn
                     randomIndex = Random.Range(0, totalCharacters);
                 } while (_usedIndexes.Contains(randomIndex)); 
 
-                _usedIndexes.Add(randomIndex); 
+                _usedIndexes.Add(randomIndex);
 
                 Vector3 spawnPosition = spawnPositions[0];
 
@@ -51,6 +51,7 @@ namespace Spawn
 
             return ActiveCharacters;
         }
+
 
         private void SpawnCharacter(CharacterDataObject data, Vector3 position)
         {
