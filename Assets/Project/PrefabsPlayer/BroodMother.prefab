@@ -323,8 +323,8 @@ GameObject:
   - component: {fileID: 5832107380849047159}
   - component: {fileID: 2083463429560678385}
   - component: {fileID: 8715294213903390137}
-  - component: {fileID: 6492259982333370223}
   - component: {fileID: -7474618923391153228}
+  - component: {fileID: 266725936641146056}
   m_Layer: 0
   m_Name: BroodMother
   m_TagString: Enemy
@@ -380,20 +380,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6492259982333370223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6067452841041272082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14efd0fae6c7a4241a6e918b3d1722c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthBar: {fileID: 3392480975020550954}
-  _effectsText: {fileID: 7280395929856080823}
 --- !u!114 &-7474618923391153228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,7 +392,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0c669de615446c449de517e76a8a84c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Vampir: 3
+  EffectTime: 3
+  _healAmount: 5
+--- !u!114 &266725936641146056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6067452841041272082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da88a385cbb2ce3409c23a023ac53eb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Effect>k__BackingField: {fileID: -7474618923391153228}
+  _healthBar: {fileID: 3392480975020550954}
+  _effectsText: {fileID: 7280395929856080823}
 --- !u!1 &7944615534628406315
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +420,6 @@ GameObject:
   - component: {fileID: 5662844573292137729}
   - component: {fileID: 693775701359767713}
   - component: {fileID: 7916622370503645972}
-  - component: {fileID: 1222136980316395053}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -484,19 +485,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1222136980316395053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7944615534628406315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6263bd715c344854681beee8866e9bbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hpSlider: {fileID: 0}
 --- !u!1 &8068481280903710985
 GameObject:
   m_ObjectHideFlags: 0

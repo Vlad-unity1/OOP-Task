@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Warrior
   m_EditorClassIdentifier: 
   Type: 1
-  Prefab: {fileID: 800006567791207248, guid: f2b601a5e545e4c419d589997cf2a0b3, type: 3}
+  Prefab: {fileID: 8306887610838780820, guid: f2b601a5e545e4c419d589997cf2a0b3, type: 3}
   SpawnPosition: {x: 0, y: 0, z: 0}
   Health: 150
   Damage: 20
-  EffectTime: 5

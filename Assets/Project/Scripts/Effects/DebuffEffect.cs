@@ -1,37 +1,31 @@
 ﻿using CharacterInfo;
+using EffectApply;
 using System.Collections;
 using UnityEngine;
 
 namespace DebuffEffectSystem
 {
-    public class DebuffEffect : MonoBehaviour
+    public class DebuffEffect : Effect
     {
-        public EffectsType Debuff;
-        private bool isDebuffed = false;
-        int originalDamage;
+        private readonly int _originalDamage;
+        private Coroutine _effect;
 
-        public void EffectDebuff(Character target, float effectTime)
+        public override void Apply(Character from, Character to)
         {
-            StartCoroutine(Effect(target, effectTime));
+            _effect = StartCoroutine(Effect(to));
         }
 
-        internal EffectsType GetEffectType()
+        private IEnumerator Effect(Character target)
         {
-            return Debuff;
-        }
-
-        private IEnumerator Effect(Character target, float effectTime)
-        {
-            if (!isDebuffed) 
+            if (_effect != null) 
             {
-                originalDamage = target.Damage;
-                isDebuffed = true; 
+                yield break;
             }
 
-            target.SetDamage(originalDamage / 2);
-            yield return new WaitForSeconds(effectTime);
-            target.SetDamage(originalDamage);
-            isDebuffed = false;
+            target.SetDamage(_originalDamage / 2);
+            yield return new WaitForSeconds(EffectTime);
+            target.SetDamage(_originalDamage);
+            _effect = null;
         }
     }
 }

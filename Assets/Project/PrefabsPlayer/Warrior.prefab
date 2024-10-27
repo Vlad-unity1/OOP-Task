@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5935089567619462076}
   - component: {fileID: 35793770221917945}
   - component: {fileID: 3510962826308005870}
-  - component: {fileID: -190952084426798937}
   - component: {fileID: -5962363255158649946}
+  - component: {fileID: 8306887610838780820}
   m_Layer: 0
   m_Name: Warrior
   m_TagString: Enemy
@@ -111,20 +111,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-190952084426798937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 800006567791207248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14efd0fae6c7a4241a6e918b3d1722c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthBar: {fileID: 5637084051726347459}
-  _effectsText: {fileID: 4776498097953082222}
 --- !u!114 &-5962363255158649946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +123,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2e135fad7b3bc48a5cab817c0b216b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stunt: 2
+  EffectTime: 4
+  _hitChance: 8
+--- !u!114 &8306887610838780820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800006567791207248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da88a385cbb2ce3409c23a023ac53eb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Effect>k__BackingField: {fileID: -5962363255158649946}
+  _healthBar: {fileID: 5637084051726347459}
+  _effectsText: {fileID: 4776498097953082222}
 --- !u!1 &1111967790558233538
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +151,6 @@ GameObject:
   - component: {fileID: 3438505247811980008}
   - component: {fileID: 7534161811624261448}
   - component: {fileID: 933106551331364093}
-  - component: {fileID: 8204316584665502148}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -215,19 +216,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8204316584665502148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1111967790558233538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6263bd715c344854681beee8866e9bbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hpSlider: {fileID: 0}
 --- !u!1 &3015724677006780380
 GameObject:
   m_ObjectHideFlags: 0

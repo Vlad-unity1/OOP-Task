@@ -1,14 +1,16 @@
 using CharacterInfo;
-using System.Collections;
+using EffectApply;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-public class VampirEffect : MonoBehaviour
+namespace VampireEffectSystem
 {
-    public EffectsType Vampir;
-
-    internal EffectsType GetEffectType()
+    public class VampirEffect : Effect
     {
-        return Vampir;
+        [SerializeField] private int _healAmount;
+
+        public override void Apply(Character from, Character to)
+        {
+            from.RestoreHealth(_healAmount);
+        }
     }
 }

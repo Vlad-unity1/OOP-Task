@@ -1,47 +1,47 @@
 ﻿using CharacterInfo;
+using EffectApply;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace CharacterViewDie
 {
+    [RequireComponent(typeof(Effect))]
     public class CharacterView : MonoBehaviour
     {
-        public Character Character { get; private set; }
+        [field:SerializeField] public Effect Effect {  get; private set; }
         [SerializeField] private Image _healthBar;
         [SerializeField] private TextMeshProUGUI _effectsText;
+        private Character _character;
 
         public void Initialize(Character character)
         {
-            Character = character;
-            Character.OnDeath += OnCharacterDeath;
+            _character = character;
+            _character.OnDeath += OnCharacterDeath;
             character.OnHealthChanged += UpdateHealth;
             character.OnEffectApply += EffectsShow;
         }
 
         private void OnCharacterDeath(Character character)
         {
-            Character.OnDeath -= OnCharacterDeath;
-            GameView.Instance.OnPlayerDeath(character);
-            Object.Destroy(this.gameObject);
+            Dispose();
+            Destroy(gameObject);
         }
 
-        public void UpdateHealth(int currentHealth)
+        private void Dispose()
         {
-            _healthBar.fillAmount = (float)currentHealth / Character.HP;
+            _character.OnDeath -= OnCharacterDeath;
+            _character.OnEffectApply -= EffectsShow;
+        }
+        
+        private void UpdateHealth(int currentHealth)
+        {
+            _healthBar.fillAmount = (float)currentHealth / _character.HP;
         }
 
-        public void EffectsShow(EffectsType type)
+        private void EffectsShow(string type)
         {
-            _effectsText.text = type.ToString();
+            _effectsText.text = type;
         }
     }
-}
-
-public enum EffectsType
-{
-    Debuff,
-    Poison,
-    Stunt,
-    Vampir
 }

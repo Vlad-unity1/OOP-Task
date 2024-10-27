@@ -1,30 +1,51 @@
-﻿using TMPro;
+﻿using CharacterInfo;
+using Restart;
+using TMPro;
 using UnityEngine;
 
 namespace WinnerWindowUI
 {
-    public class WinnerCheckUI : UIView
+    public class WinnerCheckUI : MonoBehaviour, IRestartable
     {
         [SerializeField] private GameObject _winnerPanel;
         [SerializeField] private TextMeshProUGUI _winnerText;
-        public static WinnerCheckUI Instance { get; private set; }
+        private Character[] _character;
 
         private void Start()
         {
-            Instance = this;
             _winnerPanel.SetActive(false);
         }
 
-        public override void ShowWinner(CharacterType type)
+        public void Intialize(Character[] characters)
         {
-            _winnerPanel.SetActive(true);
-            _winnerText.text = $"Winner: {type}";
+            _character = characters;
+            foreach (Character character in _character)
+            {
+                character.OnDeath += ShowWinner;
+            }
         }
 
-        public void RestartBattle()
+        private void ShowWinner(Character character)
+        {
+            _winnerPanel.SetActive(true);
+            _winnerText.text = $"Winner: {character.Type}";
+        }
+
+        private void Dispose()
+        {
+            foreach (Character character in _character)
+                character.OnDeath -= ShowWinner;
+        }
+
+        public void Restart()
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
         }
+
+        public void OnRestartButtonClicked()
+        {
+            Dispose();
+            Restart();
+        }
     }
 }
-

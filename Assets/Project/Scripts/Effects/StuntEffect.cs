@@ -1,36 +1,27 @@
 using CharacterInfo;
+using EffectApply;
 using System.Collections;
 using UnityEngine;
 
 namespace StuntEffectSystem
 {
-    public class StuntEffect : MonoBehaviour
+    public class StuntEffect : Effect
     {
-        public EffectsType Stunt;
-        public void EffectStunt(Character target, float effectTime)
-        {
-            Chance(target, effectTime);
-        }
+        [SerializeField] private float _hitChance = 8f;
 
-        private IEnumerator Effect(Character target, float effectTime)
+        public override void Apply(Character from, Character to)
         {
-            target.CanAttack = false;
-            yield return new WaitForSeconds(effectTime);
-            target.CanAttack = true;
-        }
-
-        private void Chance(Character target, float effectTime)
-        {
-            int randomInt = Random.Range(0, 10);
-            if (randomInt >= 8)
+            if (Random.value >= _hitChance)
             {
-                StartCoroutine(Effect(target, effectTime));
+                StartCoroutine(Effect(to));
             }
         }
 
-        internal EffectsType GetEffectType()
+        private IEnumerator Effect(Character target)
         {
-            return Stunt;
+            target.CanAttack = false;
+            yield return new WaitForSeconds(EffectTime);
+            target.CanAttack = true;
         }
     }
 }

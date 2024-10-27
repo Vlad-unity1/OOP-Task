@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: BroodMother
   m_EditorClassIdentifier: 
   Type: 3
-  Prefab: {fileID: 6067452841041272082, guid: 3a3b9f6784be3c94eb8f451514fb7757, type: 3}
+  Prefab: {fileID: 266725936641146056, guid: 3a3b9f6784be3c94eb8f451514fb7757, type: 3}
   SpawnPosition: {x: 0, y: 0, z: 0}
   Health: 120
   Damage: 20
-  EffectTime: 5

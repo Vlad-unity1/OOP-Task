@@ -323,7 +323,6 @@ GameObject:
   - component: {fileID: 6109385105915918828}
   - component: {fileID: 1440689070016889932}
   - component: {fileID: 8611986785728884729}
-  - component: {fileID: 768837197814899392}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -389,19 +388,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &768837197814899392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8367235095474352326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6263bd715c344854681beee8866e9bbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hpSlider: {fileID: 0}
 --- !u!1 &8672553027300971378
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,7 +401,7 @@ GameObject:
   - component: {fileID: 8110421668564789316}
   - component: {fileID: 5580915829819235190}
   - component: {fileID: 8511345956716130407}
-  - component: {fileID: -8113242459606649644}
+  - component: {fileID: 3748570046255578214}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Enemy
@@ -525,8 +511,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd9df6fe593577445b275917450a6c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Poison: 1
---- !u!114 &-8113242459606649644
+  EffectTime: 2
+  _duration: 2
+  _damage: 5
+--- !u!114 &3748570046255578214
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -535,9 +523,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8672553027300971378}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14efd0fae6c7a4241a6e918b3d1722c0, type: 3}
+  m_Script: {fileID: 11500000, guid: da88a385cbb2ce3409c23a023ac53eb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Effect>k__BackingField: {fileID: 8511345956716130407}
   _healthBar: {fileID: 3839900567122173895}
   _effectsText: {fileID: 2043672758958629184}
 --- !u!1 &8680691717505168611

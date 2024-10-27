@@ -1,26 +1,25 @@
+using CharacterInfo;
+using InputPlayer;
 using Spawn;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using WinnerWindowUI;
 
 public class GameInitializer : MonoBehaviour
 {
-    private GameView _gameView;
-    private InputController _inputController;
-    private Spawner _spawner;
+    [SerializeField] private InputController _inputController;
+    [SerializeField] private Spawner _spawner;
+    [SerializeField] private WinnerCheckUI _winnerCheckUI;
 
     private void Awake()
     {
-        _gameView = FindObjectOfType<GameView>();
-        _inputController = FindObjectOfType<InputController>();
-        _spawner = FindObjectOfType<Spawner>();
-
         InitializeGame();
     }
 
     private void InitializeGame()
     {
         _spawner.SpawnCharacters();
+        Character[] activeCharacters = _spawner.ActiveCharacters.ToArray();
+        _winnerCheckUI.Intialize(activeCharacters);
         _inputController.enabled = true;
     }
 }

@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Archer
   m_EditorClassIdentifier: 
   Type: 2
-  Prefab: {fileID: 8672553027300971378, guid: 8dcc8f94ca714c548875dbbd715cc980, type: 3}
+  Prefab: {fileID: 3748570046255578214, guid: 8dcc8f94ca714c548875dbbd715cc980, type: 3}
   SpawnPosition: {x: 0, y: 0, z: 0}
   Health: 200
   Damage: 10
-  EffectTime: 1

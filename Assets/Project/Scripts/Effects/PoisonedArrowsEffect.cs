@@ -1,31 +1,28 @@
 ﻿using CharacterInfo;
+using EffectApply;
 using System.Collections;
 using UnityEngine;
 
 namespace PoisonedEffectSystem
 {
-    public class PoisonedArrowsEffect : MonoBehaviour
+    public class PoisonedArrowsEffect : Effect
     {
-        public EffectsType Poison;
+        [SerializeField] private float _duration;
+        [SerializeField] private int _damage;
 
-        public void PoisonedEffect(Character target, int damage, float effectTime, float duration)
+        public override void Apply(Character from, Character to)
         {
-            StartCoroutine(Effect(target, damage, effectTime, duration)); // во всех способностях игрок может умереть раньше времени и выпадет null хз как решить
+            StartCoroutine(Effect(to));
         }
 
-        internal EffectsType GetEffectType()
-        {
-            return Poison;
-        }
-
-        private IEnumerator Effect(Character target, int damage, float effectTime, float duration)
+        private IEnumerator Effect(Character target)
         {
             float interval = 0f;
-            while (interval < duration)
+            while (interval < _duration)
             {
-                target.TakeDamage(damage / 2, Poison);
-                yield return new WaitForSeconds(effectTime);
-                interval += effectTime;
+                target.TakeDamage(_damage / 2, GetType().Name);
+                yield return new WaitForSeconds(EffectTime);
+                interval += EffectTime;
             }
         }
     }
