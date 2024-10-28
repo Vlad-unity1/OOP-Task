@@ -10,16 +10,20 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private Spawner _spawner;
     [SerializeField] private WinnerCheckUI _winnerCheckUI;
 
-    private void Start()
+    private void Awake()
     {
         InitializeGame();
     }
 
-    private void InitializeGame()
+    private void Start()
     {
         _spawner.SpawnCharacters();
+        _inputController.StartCyclicAttack();
+    }
+
+    private void InitializeGame()
+    {
         Character[] activeCharacters = _spawner.ActiveCharacters.ToArray();
         _winnerCheckUI.Intialize(activeCharacters);
-        _inputController.StartCyclicAttack();
     }
 }
