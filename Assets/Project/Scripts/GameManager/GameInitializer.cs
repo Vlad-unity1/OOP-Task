@@ -10,7 +10,7 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private Spawner _spawner;
     [SerializeField] private WinnerCheckUI _winnerCheckUI;
 
-    private void Awake()
+    private void Start()
     {
         InitializeGame();
     }
