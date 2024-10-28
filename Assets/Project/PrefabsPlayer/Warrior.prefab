@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EffectTime: 4
-  _hitChance: 8
+  _hitChance: 25
 --- !u!114 &8306887610838780820
 MonoBehaviour:
   m_ObjectHideFlags: 0

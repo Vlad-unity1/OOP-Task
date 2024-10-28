@@ -25,10 +25,17 @@ namespace WinnerWindowUI
             }
         }
 
-        private void ShowWinner(Character character)
+        private void ShowWinner(Character deadCharacter)
         {
-            _winnerPanel.SetActive(true);
-            _winnerText.text = $"Winner: {character.Type}";
+            foreach (Character character in _character)
+            {
+                if (character != deadCharacter)
+                {
+                    _winnerPanel.SetActive(true);
+                    _winnerText.text = $"Winner: {character.Type}";
+                    break;
+                }
+            }
         }
 
         private void Dispose()

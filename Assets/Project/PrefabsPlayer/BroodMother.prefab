@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EffectTime: 3
-  _healAmount: 5
+  _healAmount: 12
 --- !u!114 &266725936641146056
 MonoBehaviour:
   m_ObjectHideFlags: 0

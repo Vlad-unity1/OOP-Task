@@ -7,11 +7,12 @@ namespace DebuffEffectSystem
 {
     public class DebuffEffect : Effect
     {
-        private readonly int _originalDamage;
+        private int _originalDamage;
         private Coroutine _effect;
 
         public override void Apply(Character from, Character to)
         {
+            _originalDamage = to.Damage;
             _effect = StartCoroutine(Effect(to));
         }
 
