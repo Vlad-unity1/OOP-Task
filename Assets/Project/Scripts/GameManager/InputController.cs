@@ -1,5 +1,6 @@
 ﻿using CharacterInfo;
 using Spawn;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -9,39 +10,46 @@ namespace InputPlayer
     {
         [SerializeField] private Spawner _characterNumber;
 
-        private void Update()
+        private void Start()
         {
-            if (_characterNumber != null)
-            StartCoroutine(AttackCoroutine());
+            StartAttackCircle();
         }
 
-        private IEnumerator AttackCoroutine()
+        private void StartAttackCircle()
         {
-            while (true)
+            Invoke(nameof(TryAttack), 0f);
+        }
+
+        private void TryAttack()
+        {
+            if (_characterNumber.ActiveCharacters.Count < 2) return;
+
+            Character attacker1 = _characterNumber.ActiveCharacters[0];
+            Character attacker2 = _characterNumber.ActiveCharacters[1];
+
+            if (attacker1.CanAttack)
             {
-                Character attacker1 = _characterNumber.ActiveCharacters[0];
-                Character attacker2 = _characterNumber.ActiveCharacters[1];
-
-                if (attacker1 is { CanAttack: true })
-                {
-                    StartCoroutine(AttackWithCooldown(attacker1, attacker2));
-                }
-
-                if (attacker2 is { CanAttack: true })
-                {
-                    StartCoroutine(AttackWithCooldown(attacker2, attacker1));
-                }
-
-                yield return null;
+                attacker1.Attack(attacker2);
+                attacker1.CanAttack = false;
             }
+
+            if (attacker2.CanAttack)
+            {
+                attacker2.Attack(attacker1);
+                attacker2.CanAttack = false;
+            }
+
+            ResetAttack(new Character[] {attacker1, attacker2});
+
+            Invoke(nameof(TryAttack), 3f);
         }
 
-        private IEnumerator AttackWithCooldown(Character attacker, Character target)
+        private void ResetAttack(Character[] attackers)
         {
-            attacker.Attack(target);
-            attacker.CanAttack = false;
-            yield return new WaitForSeconds(3f);
-            attacker.CanAttack = true;
+            foreach (var attacker in attackers)
+            {
+                attacker.CanAttack = true;
+            }
         }
     }
 }
