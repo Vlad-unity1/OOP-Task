@@ -17,13 +17,18 @@ public class GameInitializer : MonoBehaviour
 
     private void Start()
     {
-        _spawner.SpawnCharacters();
-        _inputController.StartCyclicAttack();
+        StartGame();
     }
 
     private void InitializeGame()
     {
         Character[] activeCharacters = _spawner.ActiveCharacters.ToArray();
         _winnerCheckUI.Intialize(activeCharacters);
+    }
+
+    private void StartGame()
+    {
+        _spawner.SpawnCharacters();
+        _inputController.StartCyclicAttack();
     }
 }
