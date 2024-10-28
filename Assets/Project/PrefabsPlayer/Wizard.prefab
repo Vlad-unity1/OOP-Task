@@ -4837,7 +4837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35aa120e1bffe0e48bee72756261d8f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EffectTime: 3
+  <EffectTime>k__BackingField: 4
 --- !u!114 &340458529611794821
 MonoBehaviour:
   m_ObjectHideFlags: 0

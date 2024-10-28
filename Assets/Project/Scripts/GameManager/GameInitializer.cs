@@ -20,6 +20,6 @@ public class GameInitializer : MonoBehaviour
         _spawner.SpawnCharacters();
         Character[] activeCharacters = _spawner.ActiveCharacters.ToArray();
         _winnerCheckUI.Intialize(activeCharacters);
-        _inputController.enabled = true;
+        _inputController.StartCyclicAttack();
     }
 }

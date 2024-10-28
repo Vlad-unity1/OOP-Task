@@ -1,28 +1,23 @@
 ﻿using CharacterInfo;
 using Spawn;
-using System;
-using System.Collections;
 using UnityEngine;
 
 namespace InputPlayer
 {
     public class InputController : MonoBehaviour
     {
+        public const float COLLDOWN = 5f;
+        public const int TOTAL_CHARACTERS_IN_MAP = 2;
         [SerializeField] private Spawner _characterNumber;
 
-        private void Start()
+        public void StartCyclicAttack()
         {
-            StartAttackCircle();
+            Invoke(nameof(ExecuteAttack), 0f);
         }
 
-        private void StartAttackCircle()
+        private void ExecuteAttack()
         {
-            Invoke(nameof(TryAttack), 0f);
-        }
-
-        private void TryAttack()
-        {
-            if (_characterNumber.ActiveCharacters.Count < 2) return;
+            if (_characterNumber.ActiveCharacters.Count < TOTAL_CHARACTERS_IN_MAP) return;
 
             Character attacker1 = _characterNumber.ActiveCharacters[0];
             Character attacker2 = _characterNumber.ActiveCharacters[1];
@@ -39,12 +34,12 @@ namespace InputPlayer
                 attacker2.CanAttack = false;
             }
 
-            ResetAttack(new Character[] {attacker1, attacker2});
+            ReloadAttack(new Character[] {attacker1, attacker2});
 
-            Invoke(nameof(TryAttack), 3f);
+            Invoke(nameof(ExecuteAttack), COLLDOWN);
         }
 
-        private void ResetAttack(Character[] attackers)
+        private void ReloadAttack(Character[] attackers)
         {
             foreach (var attacker in attackers)
             {

@@ -7,7 +7,7 @@ namespace StuntEffectSystem
 {
     public class StuntEffect : Effect
     {
-        [SerializeField] private float _hitChance = 8f;
+        [SerializeField] private float _hitChance;
 
         public override void Apply(Character from, Character to)
         {

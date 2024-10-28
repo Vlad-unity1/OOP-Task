@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2e135fad7b3bc48a5cab817c0b216b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EffectTime: 4
+  <EffectTime>k__BackingField: 3
   _hitChance: 25
 --- !u!114 &8306887610838780820
 MonoBehaviour:

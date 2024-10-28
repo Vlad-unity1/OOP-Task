@@ -5,7 +5,7 @@ namespace EffectApply
 {
     public abstract class Effect : MonoBehaviour
     {
-        [SerializeField] protected float EffectTime;
+        [field:SerializeField] public float EffectTime {  get; private set; }
 
         public abstract void Apply(Character from, Character to);
     }

@@ -1,5 +1,6 @@
 ﻿using CharacterInfo;
 using EffectApply;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,6 +33,7 @@ namespace CharacterViewDie
         {
             _character.OnDeath -= OnCharacterDeath;
             _character.OnEffectApply -= EffectsShow;
+            _character.OnHealthChanged -= UpdateHealth;
         }
         
         private void UpdateHealth(int currentHealth)
@@ -42,6 +44,14 @@ namespace CharacterViewDie
         private void EffectsShow(string type)
         {
             _effectsText.text = type;
+
+            CancelInvoke(nameof(HideEffectText));
+            Invoke(nameof(HideEffectText), Effect.EffectTime);
+        }
+
+        private void HideEffectText()
+        {
+            _effectsText.text = "";
         }
     }
 }

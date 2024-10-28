@@ -51,6 +51,11 @@ namespace CharacterInfo
         public void RestoreHealth(int currentHealh)
         {
             CurrentHP += currentHealh;
+
+            if (CurrentHP > HP)
+            {
+                CurrentHP = HP;
+            }
         }
 
         private void Die()
