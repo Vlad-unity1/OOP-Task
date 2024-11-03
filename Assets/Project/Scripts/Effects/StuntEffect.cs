@@ -21,7 +21,6 @@ namespace StuntEffectSystem
         {
             target.CanAttack = false;
             target.IsStunned = true;
-            Debug.Log($"Stun applied to {target}. Effect duration: {EffectTime}");
             yield return new WaitForSeconds(EffectTime);
             target.CanAttack = true;
             target.IsStunned = false;

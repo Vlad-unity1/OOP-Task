@@ -30,8 +30,8 @@ namespace Spawn
 
         private void SpawnCharacter(CharacterData data, Transform point)
         {
-            CharacterSystemView.CharacterView instance = Instantiate(data.Prefab, point.position, Quaternion.identity);
-            Character character = new Character(data.Damage, data.Health, data.Type, instance.Effect);
+            CharacterView instance = Instantiate(data.Prefab, point.position, Quaternion.identity);
+            Character character = new(data.Damage, data.Health, data.Type, instance.Effect);
             instance.Initialize(character);
             ActiveCharacters.Add(character);
         }
