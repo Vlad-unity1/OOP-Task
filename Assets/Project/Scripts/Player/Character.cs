@@ -7,18 +7,18 @@ namespace CharacterInfo
 {
     public class Character
     {
-        private readonly Effect _effect;
-        public int Damage { get; private set; }
-        public int HP { get; protected set; }
-        public int CurrentHP { get; set; }
-        public int EffectTime { get; private set; }
-        public CharacterType Type { get; internal set; }
-        public bool IsAlive { get; internal set; }
-        public bool CanAttack {  get; internal set; }
-
         public event Action<string> OnEffectApply;
-        public event Action<int> OnHealthChanged;
-        public event Action<Character> OnDeath;
+        public event Action OnHealthChanged;
+        public event Action OnDeath;
+
+        public int Damage { get; private set; }
+        public int HP { get; }
+        public int CurrentHp { get; set; }
+        public CharacterType Type { get; }
+        public bool IsAlive { get; private set; }
+        public bool CanAttack { get; internal set; }
+        public bool IsStunned { get; set; } = false;
+        public Effect Effect { get; private set; }
 
         public Character(int damage, int hp, CharacterType type, Effect effect)
         {
@@ -26,17 +26,19 @@ namespace CharacterInfo
             HP = hp;
             Type = type;
             IsAlive = true;
-            CurrentHP = hp;
+            CurrentHp = hp;
             CanAttack = true;
-            _effect = effect;
+            Effect = effect;
         }
 
         public void TakeDamage(int damage, string effect)
         {
-            CurrentHP = Mathf.Max(CurrentHP - damage, 0);
-            OnHealthChanged?.Invoke(CurrentHP);
+            CurrentHp = Mathf.Max(CurrentHp - damage, 0);
+
+            OnHealthChanged?.Invoke();
             OnEffectApply?.Invoke(effect);
-            if (CurrentHP == 0)
+
+            if (CurrentHp == 0)
             {
                 Die();
                 CanAttack = false;
@@ -50,26 +52,27 @@ namespace CharacterInfo
 
         public void RestoreHealth(int currentHealh)
         {
-            CurrentHP += currentHealh;
+            CurrentHp += currentHealh;
 
-            if (CurrentHP > HP)
+            if (CurrentHp > HP)
             {
-                CurrentHP = HP;
+                CurrentHp = HP;
             }
         }
 
         private void Die()
         {
             IsAlive = false;
-            OnDeath?.Invoke(this);
+            OnDeath?.Invoke();
         }
 
         public void Attack(Character opponent)
         {
-            if (opponent.IsAlive)
+            if (!IsStunned && opponent.IsAlive && CanAttack)
             {
-                opponent.TakeDamage(Damage,_effect.GetType().Name);
-                _effect.Apply(this, opponent);
+                opponent.TakeDamage(Damage, Effect.GetType().Name);
+                Effect.Apply(this, opponent);
+                CanAttack = false;
             }
         }
     }

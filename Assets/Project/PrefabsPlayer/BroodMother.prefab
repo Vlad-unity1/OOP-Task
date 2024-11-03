@@ -325,6 +325,7 @@ GameObject:
   - component: {fileID: 8715294213903390137}
   - component: {fileID: -7474618923391153228}
   - component: {fileID: 266725936641146056}
+  - component: {fileID: 895600876929664251}
   m_Layer: 0
   m_Name: BroodMother
   m_TagString: Enemy
@@ -408,6 +409,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Effect>k__BackingField: {fileID: -7474618923391153228}
   _healthBar: {fileID: 3392480975020550954}
+  _effectVisual: {fileID: 895600876929664251}
+--- !u!114 &895600876929664251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6067452841041272082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189632e95f1544c4eb4efe0b29277aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _effectsText: {fileID: 7280395929856080823}
 --- !u!1 &7944615534628406315
 GameObject:

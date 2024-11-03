@@ -1,34 +1,41 @@
-using CharacterInfo;
+using GameRestart;
 using InputPlayer;
 using Spawn;
 using UnityEngine;
-using WinnerWindowUI;
+using WinnerControllerUI;
 
-public class GameInitializer : MonoBehaviour
+namespace StartInitializer
 {
-    [SerializeField] private InputController _inputController;
-    [SerializeField] private Spawner _spawner;
-    [SerializeField] private WinnerCheckUI _winnerCheckUI;
-
-    private void Awake()
+    public class GameInitializer : MonoBehaviour
     {
-        InitializeGame();
-    }
+        [SerializeField] private InputController _inputController;
+        [SerializeField] private Spawner _spawner;
+        [SerializeField] private WinnerController _winnerController;
 
-    private void Start()
-    {
-        StartGame();
-    }
+        private GameRestarter _gameRestarter;
 
-    private void InitializeGame()
-    {
-        Character[] activeCharacters = _spawner.ActiveCharacters.ToArray();
-        _winnerCheckUI.Intialize(activeCharacters);
-    }
+        private void Awake()
+        {
+            InitializeGame();
+        }
 
-    private void StartGame()
-    {
-        _spawner.SpawnCharacters();
-        _inputController.StartCyclicAttack();
+        private void Start()
+        {
+            StartGame();
+        }
+
+        private void InitializeGame()
+        {
+            _gameRestarter = new GameRestarter();
+
+            _spawner.SpawnCharacters();
+            _inputController.Initialize(_spawner);
+            _winnerController.Initialize(_spawner, _gameRestarter);
+        }
+
+        private void StartGame()
+        {
+            _inputController.StartCyclicAttack();
+        }
     }
 }

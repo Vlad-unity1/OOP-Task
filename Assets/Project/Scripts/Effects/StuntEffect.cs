@@ -1,4 +1,4 @@
-using CharacterInfo;
+﻿using CharacterInfo;
 using EffectApply;
 using System.Collections;
 using UnityEngine;
@@ -11,7 +11,7 @@ namespace StuntEffectSystem
 
         public override void Apply(Character from, Character to)
         {
-            if (Random.value >= _hitChance)
+            if (Random.value <= _hitChance)
             {
                 StartCoroutine(Effect(to));
             }
@@ -20,8 +20,11 @@ namespace StuntEffectSystem
         private IEnumerator Effect(Character target)
         {
             target.CanAttack = false;
+            target.IsStunned = true;
+            Debug.Log($"Stun applied to {target}. Effect duration: {EffectTime}");
             yield return new WaitForSeconds(EffectTime);
             target.CanAttack = true;
+            target.IsStunned = false;
         }
     }
 }

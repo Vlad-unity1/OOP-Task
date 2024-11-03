@@ -1,7 +1,6 @@
 ﻿using CharacterInfo;
 using EffectApply;
-using System;
-using TMPro;
+using EffectVisualization;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,23 +9,19 @@ namespace CharacterViewDie
     [RequireComponent(typeof(Effect))]
     public class CharacterView : MonoBehaviour
     {
-        [field:SerializeField] public Effect Effect {  get; private set; }
-        [SerializeField] private Image _healthBar;
-        [SerializeField] private TextMeshProUGUI _effectsText;
-        private Character _character;
+        [field: SerializeField] public Effect Effect { get; private set; }
 
+        [SerializeField] private Image _healthBar;
+        [SerializeField] private EffectVisual _effectVisual;
+
+        private Character _character;
+        
         public void Initialize(Character character)
         {
             _character = character;
             _character.OnDeath += OnCharacterDeath;
-            character.OnHealthChanged += UpdateHealth;
-            character.OnEffectApply += EffectsShow;
-        }
-
-        private void OnCharacterDeath(Character character)
-        {
-            Dispose();
-            Destroy(gameObject);
+            _character.OnHealthChanged += UpdateHealth;
+            _character.OnEffectApply += EffectsShow;
         }
 
         private void Dispose()
@@ -35,23 +30,21 @@ namespace CharacterViewDie
             _character.OnEffectApply -= EffectsShow;
             _character.OnHealthChanged -= UpdateHealth;
         }
-        
-        private void UpdateHealth(int currentHealth)
+
+        private void OnCharacterDeath()
         {
-            _healthBar.fillAmount = (float)currentHealth / _character.HP;
+            Dispose();
+            Destroy(gameObject);
+        }
+
+        private void UpdateHealth()
+        {
+            _healthBar.fillAmount = (float)_character.CurrentHp / _character.HP;
         }
 
         private void EffectsShow(string type)
         {
-            _effectsText.text = type;
-
-            CancelInvoke(nameof(HideEffectText));
-            Invoke(nameof(HideEffectText), Effect.EffectTime);
-        }
-
-        private void HideEffectText()
-        {
-            _effectsText.text = "";
+            _effectVisual.ShowEffect(type, Effect.EffectTime);
         }
     }
 }

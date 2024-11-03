@@ -2,55 +2,38 @@
 using CharacterScriptable;
 using CharacterViewDie;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Spawn
 {
     public class Spawner : MonoBehaviour
     {
-        public const int CharactersInScene = 2;
-        public List<Character> ActiveCharacters { get; private set; } = new();
+        public List<Character> ActiveCharacters { get; } = new();
+
         [SerializeField] private CharacterDataObject[] _characterData;
-        [SerializeField] private Vector3[] _spawnPositions = { new(2, 0, -8), new(5, 0, -8) };
-        private readonly HashSet<int> _usedIndexes = new();
-        private readonly HashSet<Vector3> _usedPositions = new();
+        [SerializeField] private Transform _firstSpawnPoint;
+        [SerializeField] private Transform _secondSpawnPoint;
 
         public void SpawnCharacters()
         {
-            int totalCharacters = _characterData.Length;
-            for (int i = 0; i < CharactersInScene; i++)
-            {
-                int randomIndex;
+            CharacterDataObject first = _characterData[Random.Range(0, _characterData.Length)];
+            CharacterDataObject[] leftDatas = _characterData
+                .Where(x => x != first)
+                .ToArray();
 
-                do
-                {
-                    randomIndex = Random.Range(0, totalCharacters);
-                } while (_usedIndexes.Contains(randomIndex));
+            CharacterDataObject second = leftDatas[Random.Range(0, leftDatas.Length)];
 
-                _usedIndexes.Add(randomIndex);
-
-                Vector3 spawnPosition = _spawnPositions[0];
-
-                if (_usedPositions.Contains(spawnPosition))
-                {
-                    spawnPosition = _spawnPositions[1];
-                }
-
-                _usedPositions.Add(spawnPosition);
-
-                SpawnCharacter(_characterData[randomIndex], spawnPosition);
-            }
+            SpawnCharacter(first, _firstSpawnPoint);
+            SpawnCharacter(second, _secondSpawnPoint);
         }
 
-        private void SpawnCharacter(CharacterDataObject data, Vector3 position)
+        private void SpawnCharacter(CharacterDataObject data, Transform point)
         {
-            if(ActiveCharacters.Count < CharactersInScene)
-            {
-                CharacterView instance = Instantiate(data.Prefab, position, Quaternion.identity);
-                Character character = new(data.Damage, data.Health, data.Type, instance.Effect);
-                instance.Initialize(character);
-                ActiveCharacters.Add(character);
-            }
+            CharacterView instance = Instantiate(data.Prefab, point.position, Quaternion.identity);
+            Character character = new Character(data.Damage, data.Health, data.Type, instance.Effect);
+            instance.Initialize(character);
+            ActiveCharacters.Add(character);
         }
     }
 }

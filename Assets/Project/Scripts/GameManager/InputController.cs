@@ -1,50 +1,48 @@
 ﻿using CharacterInfo;
 using Spawn;
+using System.Collections;
 using UnityEngine;
 
 namespace InputPlayer
 {
     public class InputController : MonoBehaviour
     {
-        public const float COLLDOWN = 5f;
-        public const int TOTAL_CHARACTERS_IN_MAP = 2;
-        [SerializeField] private Spawner _characterNumber;
+        private const float COOLLDOWN = 5f;
+
+        private Spawner _spawner;
+        private Coroutine _attackCoroutine;
+
+        public void Initialize(Spawner spawner)
+        {
+            _spawner = spawner;
+        }
 
         public void StartCyclicAttack()
         {
-            Invoke(nameof(ExecuteAttack), 0f);
+            _attackCoroutine = StartCoroutine(ExecuteAttack());
         }
 
-        private void ExecuteAttack()
+        private IEnumerator ExecuteAttack()
         {
-            if (_characterNumber.ActiveCharacters.Count < TOTAL_CHARACTERS_IN_MAP) return;
-
-            Character attacker1 = _characterNumber.ActiveCharacters[0];
-            Character attacker2 = _characterNumber.ActiveCharacters[1];
-
-            if (attacker1.CanAttack)
+            while (true)
             {
+                Character attacker1 = _spawner.ActiveCharacters[0];
+                Character attacker2 = _spawner.ActiveCharacters[1];
+
                 attacker1.Attack(attacker2);
-                attacker1.CanAttack = false;
-            }
-
-            if (attacker2.CanAttack)
-            {
                 attacker2.Attack(attacker1);
-                attacker2.CanAttack = false;
+
+                yield return new WaitForSeconds(COOLLDOWN);
+
+                attacker1.CanAttack = true;
+                attacker2.CanAttack = true;
             }
-
-            ReloadAttack(new Character[] {attacker1, attacker2});
-
-            Invoke(nameof(ExecuteAttack), COLLDOWN);
         }
 
-        private void ReloadAttack(Character[] attackers)
+        private void OnDisable()
         {
-            foreach (var attacker in attackers)
-            {
-                attacker.CanAttack = true;
-            }
+            StopCoroutine(_attackCoroutine);
+            _attackCoroutine = null;
         }
     }
 }
