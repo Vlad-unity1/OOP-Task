@@ -4,7 +4,7 @@ using EffectVisualization;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CharacterViewDie
+namespace CharacterSystemView
 {
     [RequireComponent(typeof(Effect))]
     public class CharacterView : MonoBehaviour

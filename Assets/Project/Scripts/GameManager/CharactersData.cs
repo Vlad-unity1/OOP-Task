@@ -1,11 +1,11 @@
-using CharacterViewDie;
+using CharacterSystemView;
 using UnityEngine;
 using CharacterTypes;
 
 namespace CharacterScriptable
 {
     [CreateAssetMenu(fileName = "CharacterData", menuName = "ScriptableObjects/CharacterData", order = 51)]
-    public class CharacterDataObject : ScriptableObject
+    public class CharacterData : ScriptableObject
     {
         public CharacterType Type;
         public CharacterView Prefab;
