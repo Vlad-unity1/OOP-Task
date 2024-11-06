@@ -9,7 +9,8 @@ namespace Spawn
 {
     public class Spawner : MonoBehaviour
     {
-        public List<Character> ActiveCharacters { get; } = new();
+        public Character FirstCharacter { get; private set; }
+        public Character SecondCharacter { get; private set; }
 
         [SerializeField] private CharacterData[] _characterData;
         [SerializeField] private Transform _firstSpawnPoint;
@@ -33,7 +34,14 @@ namespace Spawn
             CharacterView instance = Instantiate(data.Prefab, point.position, Quaternion.identity);
             Character character = new(data.Damage, data.Health, data.Type, instance.Effect);
             instance.Initialize(character);
-            ActiveCharacters.Add(character);
+            if (FirstCharacter == null)
+            {
+                FirstCharacter = character;
+            }
+            else if (SecondCharacter == null)
+            {
+                SecondCharacter = character;
+            }
         }
     }
 }

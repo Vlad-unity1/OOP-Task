@@ -19,11 +19,9 @@ namespace StuntEffectSystem
 
         private IEnumerator Effect(Character target)
         {
-            target.CanAttack = false;
-            target.IsStunned = true;
+            target.ReloadAttack(false);
             yield return new WaitForSeconds(EffectTime);
-            target.CanAttack = true;
-            target.IsStunned = false;
+            target.ReloadAttack(true);
         }
     }
 }

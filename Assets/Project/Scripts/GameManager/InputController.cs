@@ -26,16 +26,16 @@ namespace InputPlayer
         {
             while (true)
             {
-                Character attacker1 = _spawner.ActiveCharacters[0];
-                Character attacker2 = _spawner.ActiveCharacters[1];
+                Character attacker1 = _spawner.FirstCharacter;
+                Character attacker2 = _spawner.SecondCharacter;
 
                 attacker1.Attack(attacker2);
                 attacker2.Attack(attacker1);
 
                 yield return new WaitForSeconds(COOLLDOWN);
 
-                attacker1.CanAttack = true;
-                attacker2.CanAttack = true;
+                attacker1.ReloadAttack(true);
+                attacker2.ReloadAttack(true);
             }
         }
 

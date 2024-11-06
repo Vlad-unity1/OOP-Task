@@ -1,23 +1,21 @@
 using CharacterInfo;
 using Restart;
-using Spawn;
-using UnityEngine;
 using WinnerModelUI;
 using WinnerViewUI;
 
 namespace WinnerControllerUI
 {
-    public class WinnerController : MonoBehaviour
+    public class WinnerController
     {
-        [SerializeField] private WinnerView _winnerView;
+        private readonly WinnerView _winnerView;
+        private readonly WinnerModel _winnerModel;
+        private readonly IRestartable _gameRestarter;
 
-        private WinnerModel _winnerModel;
-        private IRestartable _gameRestarter;
-
-        public void Initialize(Spawner spawner, IRestartable gameRestarter)
+        public WinnerController(IRestartable gameRestarter, WinnerModel winnerModel, WinnerView winnerView)
         {
             _gameRestarter = gameRestarter;
-            _winnerModel = new WinnerModel(spawner);
+            _winnerModel = winnerModel;
+            _winnerView = winnerView;
             _winnerModel.OnWinnerDeclared += OnWinnerDeclared;
         }
 
@@ -29,13 +27,13 @@ namespace WinnerControllerUI
         private void Dispose()
         {
             _winnerModel.OnWinnerDeclared -= OnWinnerDeclared;
+            _winnerModel.Dispose();
         }
 
         public void OnRestartButtonClicked()
         {
             _gameRestarter.Restart();
             Dispose();
-            _winnerModel.Dispose();
         }
     }
 }

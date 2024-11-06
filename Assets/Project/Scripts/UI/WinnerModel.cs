@@ -13,30 +13,26 @@ namespace WinnerModelUI
         {
             _spawner = spawner;
 
-            foreach (Character character in _spawner.ActiveCharacters)
-            {
-                character.OnDeath += CheckForWinner;
-            }
+            _spawner.FirstCharacter.OnDeath += CheckForWinner;
+            _spawner.SecondCharacter.OnDeath += CheckForWinner;
         }
 
         private void CheckForWinner()
         {
-            foreach (Character character in _spawner.ActiveCharacters)
+            if (_spawner.FirstCharacter.IsAlive)
             {
-                if (character.IsAlive)
-                {
-                    OnWinnerDeclared?.Invoke(character);
-                    break;
-                }
+                OnWinnerDeclared?.Invoke(_spawner.FirstCharacter);
+            }
+            else if (_spawner.SecondCharacter.IsAlive)
+            {
+                OnWinnerDeclared?.Invoke(_spawner.SecondCharacter);
             }
         }
 
         public void Dispose()
         {
-            foreach (Character character in _spawner.ActiveCharacters)
-            {
-                character.OnDeath -= CheckForWinner;
-            }
+            _spawner.FirstCharacter.OnDeath -= CheckForWinner;
+            _spawner.SecondCharacter.OnDeath -= CheckForWinner;
         }
     }
 }
