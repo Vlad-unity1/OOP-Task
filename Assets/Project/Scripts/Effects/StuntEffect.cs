@@ -24,10 +24,8 @@ namespace StuntEffectSystem
             {
                 target.ReloadAttack(false);
                 target.SetStunned(true);
-                Debug.Log(target.IsStunned);
                 yield return new WaitForSeconds(EffectTime);
                 target.SetStunned(false);
-                Debug.Log(target.IsStunned);
                 target.ReloadAttack(true);
             }
         }

@@ -44,13 +44,11 @@ namespace InputPlayer
 
                 if (!attacker1.IsStunned)
                 {
-                    Debug.Log(attacker1.IsStunned);
                     attacker1.ReloadAttack(true);
                 }
 
                 if (!attacker2.IsStunned)
                 {
-                    Debug.Log(attacker1.IsStunned);
                     attacker2.ReloadAttack(true);
                 }
             }
