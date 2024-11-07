@@ -1,4 +1,3 @@
-using GameRestart;
 using InputPlayer;
 using Spawn;
 using UnityEngine;
@@ -14,7 +13,6 @@ namespace StartInitializer
         [SerializeField] private Spawner _spawner;
         [SerializeField] private WinnerView _winnerView;
 
-        private GameRestarter _gameRestarter;
         private WinnerController _winnerController;
 
         private void Awake()
@@ -29,12 +27,11 @@ namespace StartInitializer
 
         private void InitializeGame()
         {
-            _gameRestarter = new GameRestarter();
             _spawner.SpawnCharacters();
             _inputController.Initialize(_spawner);
 
             WinnerModel winnerModel = new(_spawner);
-            _winnerController = new WinnerController(_gameRestarter, winnerModel, _winnerView);
+            _winnerController = new WinnerController(winnerModel, _winnerView);
         }
 
         private void StartGame()

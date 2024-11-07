@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EffectTime>k__BackingField: 10
-  _hitChance: 0.5
+  _hitChance: 1
 --- !u!114 &8306887610838780820
 MonoBehaviour:
   m_ObjectHideFlags: 0

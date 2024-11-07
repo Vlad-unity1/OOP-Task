@@ -1,8 +1,9 @@
 using Restart;
+using UnityEngine;
 
 namespace GameRestart
 {
-    public class GameRestarter : IRestartable
+    public class GameRestarter : MonoBehaviour, IRestartable
     {
         public void Restart()
         {

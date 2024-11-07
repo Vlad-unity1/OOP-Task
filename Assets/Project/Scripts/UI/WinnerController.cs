@@ -1,5 +1,5 @@
 using CharacterInfo;
-using Restart;
+using UnityEngine.Events;
 using WinnerModelUI;
 using WinnerViewUI;
 
@@ -9,11 +9,9 @@ namespace WinnerControllerUI
     {
         private readonly WinnerView _winnerView;
         private readonly WinnerModel _winnerModel;
-        private readonly IRestartable _gameRestarter;
 
-        public WinnerController(IRestartable gameRestarter, WinnerModel winnerModel, WinnerView winnerView)
+        public WinnerController(WinnerModel winnerModel, WinnerView winnerView)
         {
-            _gameRestarter = gameRestarter;
             _winnerModel = winnerModel;
             _winnerView = winnerView;
             _winnerModel.OnWinnerDeclared += OnWinnerDeclared;
@@ -22,18 +20,13 @@ namespace WinnerControllerUI
         private void OnWinnerDeclared(Character winner)
         {
             _winnerView.ShowWinner(winner.Type.ToString());
+            Dispose();
         }
 
         private void Dispose()
         {
             _winnerModel.OnWinnerDeclared -= OnWinnerDeclared;
             _winnerModel.Dispose();
-        }
-
-        public void OnRestartButtonClicked()
-        {
-            _gameRestarter.Restart();
-            Dispose();
         }
     }
 }

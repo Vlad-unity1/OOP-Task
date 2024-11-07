@@ -17,6 +17,7 @@ namespace CharacterInfo
         public CharacterType Type { get; private set; }
         public bool IsAlive { get; private set; }
         public bool CanAttack { get; private set; }
+        public bool IsStunned { get; private set; }
         public Effect Effect { get; private set; }
 
         public Character(int damage, int hp, CharacterType type, Effect effect)
@@ -28,6 +29,7 @@ namespace CharacterInfo
             CurrentHp = hp;
             CanAttack = true;
             Effect = effect;
+            IsStunned = false;
         }
 
         public void TakeDamage(int damage, string effect)
@@ -62,7 +64,12 @@ namespace CharacterInfo
         public bool ReloadAttack(bool canAttack)
         {
             CanAttack = canAttack;
-            return canAttack;
+            return CanAttack;
+        }
+
+        public void SetStunned(bool isStunned)
+        {
+            IsStunned = isStunned;
         }
 
         private void Die()
@@ -73,7 +80,7 @@ namespace CharacterInfo
 
         public void Attack(Character opponent)
         {
-            if (opponent.IsAlive && CanAttack)
+            if (!IsStunned && opponent.IsAlive && CanAttack)
             {
                 opponent.TakeDamage(Damage, Effect.GetType().Name);
                 Effect.Apply(this, opponent);

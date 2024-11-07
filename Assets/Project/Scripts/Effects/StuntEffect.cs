@@ -14,14 +14,22 @@ namespace StuntEffectSystem
             if (Random.value <= _hitChance)
             {
                 StartCoroutine(Effect(to));
+                Debug.Log(to);
             }
         }
 
         private IEnumerator Effect(Character target)
         {
-            target.ReloadAttack(false);
-            yield return new WaitForSeconds(EffectTime);
-            target.ReloadAttack(true);
+            if (!target.IsStunned)
+            {
+                target.ReloadAttack(false);
+                target.SetStunned(true);
+                Debug.Log(target.IsStunned);
+                yield return new WaitForSeconds(EffectTime);
+                target.SetStunned(false);
+                Debug.Log(target.IsStunned);
+                target.ReloadAttack(true);
+            }
         }
     }
 }

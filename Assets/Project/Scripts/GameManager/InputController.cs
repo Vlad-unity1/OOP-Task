@@ -2,12 +2,13 @@
 using Spawn;
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace InputPlayer
 {
     public class InputController : MonoBehaviour
     {
-        private const float COOLLDOWN = 5f;
+        private const float COOLDOWN = 1f;
 
         private Spawner _spawner;
         private Coroutine _attackCoroutine;
@@ -29,13 +30,29 @@ namespace InputPlayer
                 Character attacker1 = _spawner.FirstCharacter;
                 Character attacker2 = _spawner.SecondCharacter;
 
-                attacker1.Attack(attacker2);
-                attacker2.Attack(attacker1);
+                if (!attacker1.IsStunned && attacker1.IsAlive)
+                {
+                    attacker1.Attack(attacker2);
+                }
 
-                yield return new WaitForSeconds(COOLLDOWN);
+                if (!attacker2.IsStunned && attacker2.IsAlive)
+                {
+                    attacker2.Attack(attacker1);
+                }
 
-                attacker1.ReloadAttack(true);
-                attacker2.ReloadAttack(true);
+                yield return new WaitForSeconds(COOLDOWN);
+
+                if (!attacker1.IsStunned)
+                {
+                    Debug.Log(attacker1.IsStunned);
+                    attacker1.ReloadAttack(true);
+                }
+
+                if (!attacker2.IsStunned)
+                {
+                    Debug.Log(attacker1.IsStunned);
+                    attacker2.ReloadAttack(true);
+                }
             }
         }
 
